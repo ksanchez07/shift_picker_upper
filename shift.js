@@ -4,7 +4,7 @@ puppeteer.use(StealthPlugin());
 
 // Edit date for the shift you want, enter the time from before you press enter
 // on terminal because it will only add the first shift
-const URL = "https://atoz.amazon.work/shifts/schedule/find?date=2026-02-09";
+const URL = "https://atoz.amazon.work/shifts/schedule/find?date=2026-02-11";
 
 // Function to calculate the delay until target time today
 function getDelayUntilTime(targetHour, targetMinute, targetSecond, targetMillisecond) {
@@ -94,11 +94,11 @@ async function clickViewDetails(page) {
 async function start() {
     const page = await initBrowser();
 
-    // Calculate the delay until 12:50:59 PM today
-    const delay = getDelayUntilTime(12, 19, 59, 500);
+    // Calculate the delay until 3:59:59 PM today
+    const delay = getDelayUntilTime(15, 59, 59, 500);
 
 
-    console.log(`Waiting until 12:19:59 PM... (${delay / 1000} seconds)`);
+    console.log(`Waiting until 3:59:59 PM... (${delay / 1000} seconds)`);
 
     // Wait until 12:50:59 PM
     setTimeout(async () => {
