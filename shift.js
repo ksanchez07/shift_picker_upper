@@ -4,14 +4,14 @@ puppeteer.use(StealthPlugin());
 
 // Edit date for the shift you want, enter the time from before you press enter
 // on terminal because it will only add the first shift
-const URL = "https://atoz.amazon.work/shifts/schedule/find?date=2025-03-09";
+const URL = "https://atoz.amazon.work/shifts/schedule/find?date=2026-02-09";
 
-// Function to calculate the delay until 12:50:59 PM today
-function getDelayUntilTime(targetHour, targetMinute, targetSecond) {
+// Function to calculate the delay until target time today
+function getDelayUntilTime(targetHour, targetMinute, targetSecond, targetMillisecond) {
     const now = new Date();
     const targetTime = new Date(now);
-    targetTime.setHours(targetHour, targetMinute, targetSecond, 0);
-    
+    targetTime.setHours(targetHour, targetMinute, targetSecond, targetMillisecond);
+
     // If the target time is in the past, set it for the next day
     if (targetTime < now) {
         targetTime.setDate(targetTime.getDate() + 1);
@@ -95,7 +95,7 @@ async function start() {
     const page = await initBrowser();
 
     // Calculate the delay until 12:50:59 PM today
-    const delay = getDelayUntilTime(12, 19, 59);
+    const delay = getDelayUntilTime(12, 19, 59, 500);
 
 
     console.log(`Waiting until 12:19:59 PM... (${delay / 1000} seconds)`);
